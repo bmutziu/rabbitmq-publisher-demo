@@ -1,0 +1,19 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /rabbitmq-publisher-demo
+  shutdown: graceful
+
+spring:
+  application:
+    name: rabbitmq-publisher-demo
+  rabbitmq:
+    host: localhost
+    port: 5672
+    publisher-confirm-type: correlated
+
+logging:
+  level:
+    root: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX}|2|%level|${spring.application.name:-}|%X{traceId},%X{spanId},%X{sampled},%X{X-Correlation-Id}|${PID:-}|%thread|%logger{40}|%message%n"
