@@ -28,6 +28,7 @@ public class SchedulePublishRetryConfig {
     public void scheduleNackedRepublishTask() {
         Queue<RetryCorrelationData> queue = rabbitPublisherService.getNegativeAckedMessages();
 
+        // try re-publish with batch size of 100 each time
         for (int i = 0; i < 100; i++) {
             if (queue.isEmpty()) {
                 break;
@@ -61,6 +62,7 @@ public class SchedulePublishRetryConfig {
             return;
         }
 
+        // have limit of retry count of 100, to prevent infinite retry
         if (retryCount < 100) {
             rabbitPublisherService.publishMessage(data, retryCount + 1);
         } else {

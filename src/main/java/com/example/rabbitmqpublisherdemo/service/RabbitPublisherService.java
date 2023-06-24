@@ -49,6 +49,7 @@ public class RabbitPublisherService {
         }
     }
 
+    // This method can be @Async if you don't want to wait for retryTemplate
     public void publishMessage(MyData myData, int retryCount) {
         final String id = myData.getId();
 

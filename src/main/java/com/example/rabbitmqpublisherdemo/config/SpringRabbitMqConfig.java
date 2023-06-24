@@ -57,7 +57,6 @@ public class SpringRabbitMqConfig {
     @Bean
     public Jackson2JsonMessageConverter producerJackson2MessageConverter() {
         ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.registerModules(new JavaTimeModule());
         return new Jackson2JsonMessageConverter(objectMapper);
     }
 
